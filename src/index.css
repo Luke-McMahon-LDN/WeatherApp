@@ -1,0 +1,11 @@
+body {
+  margin: 10px;
+  padding-left: 250px;
+  background-color:rgb(253, 253, 253);
+  background-image:./images/gotchar.jpg;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
