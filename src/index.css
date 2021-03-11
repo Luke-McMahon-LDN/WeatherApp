@@ -1,0 +1,9 @@
+body {
+  margin: 10px;
+  background-color:rgb(253, 253, 253);
+  background-image:./images/gotchar.jpg;
+}
+
+code {
+  font-family: 'Akaya Telivigala', cursive;
+}

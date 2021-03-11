@@ -1,0 +1,22 @@
+
+.sidebar {
+    padding: 10px;
+    margin: 10px;
+    border: 0px solid #ccc;
+    float: left;
+    width: 250px;
+    height: 100%;
+    padding-left: 0.5px;
+    position: fixed;
+   
+}
+
+.sidebar {
+  height:100%;
+  
+}
+  
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
