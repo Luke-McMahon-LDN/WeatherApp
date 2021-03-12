@@ -6,9 +6,11 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import axios from "axios";
+import { render } from "@testing-library/react";
+import booksImage from "../../images/gotbooks.jpg";
+import houseImage from "../../images/gotmap.jpg";
+import charImage from "../../images/gotchar.jpg";
 
 const useStyles = makeStyles({
   root: {
@@ -19,36 +21,55 @@ const useStyles = makeStyles({
   },
 });
 
-// TODO - make sure FeedComponent is expecting the right props!
-export const FeedComponent = props => {
+function cardImage (name) {
+  if (name === "Characters") {
+    return charImage;
+  } else if (name === "Books") {
+    return booksImage;
+  } else {
+    return houseImage;
+  } 
+}
+
+export const FeedComponent = ({feedResults, dataChoice}) => {
   function renderList() {
-    if (props.feedResults.length > 0) {
-      return props.feedResults.map(result => {
+    if (feedResults.length > 0) {
+      return feedResults.map((result) => {
         return (
-           <Card className={classes.root}>
+          <Card className={classes.root}>
             <CardActionArea>
-              <CardMedia
-                className={classes.media}
-              />
+              <CardMedia className={classes.media} 
+                image={cardImage(dataChoice.name)}
+
+               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                   {result.name}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Game of Thrones
+                {dataChoice === "houses"
+                    ? "📜       " + result.words
+                    : ""}
+                  {dataChoice === "characters"
+                    ? "👀       " + result.aliases
+                    : ""}
+                  {dataChoice === "books"
+                   ? "✍️       " + result.authors : ""}
+                </Typography>
+                <Typography variant="body3" color="textSecondary" component="p">
+                {dataChoice === "houses"
+                 ? "🏞️        " + result.region : ""}
+                  {dataChoice === "characters"
+                    ? "🚻       " + result.gender
+                    : ""}
+                  {dataChoice === "books"
+                    ? "📚       " + result.publisher
+                    : ""}
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions>
-              <Button size="small" color="primary">
-                #
-              </Button>
-              <Button size="small" color="primary">
-                #
-              </Button>
-            </CardActions>
-           </Card> 
-           
+            <CardActions></CardActions>
+          </Card>
         );
       });
     }
@@ -56,10 +77,6 @@ export const FeedComponent = props => {
   }
 
   const classes = useStyles();
-  console.log(props);
 
   return <div class="grid">{renderList()}</div>;
 };
-
-/*{ TODO - build up a list of results }*/
-/*{ TODO [STRETCH] - update this list to be a list/grid of STRETCH_Cards }*/

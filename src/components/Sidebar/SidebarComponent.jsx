@@ -60,7 +60,10 @@ export const SidebarComponent = ({ dataChoice, setDataChoice }) => {
               control={<Radio />}
               label="Characters"
             />
-            <FormControlLabel value="books" control={<Radio />} label="Books" />
+            <FormControlLabel 
+            value="books" 
+            control={<Radio />} 
+            label="Books" />
           </RadioGroup>
         </FormControl>
       </div>
